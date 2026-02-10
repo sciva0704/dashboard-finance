@@ -20,3 +20,5 @@ function App() {
 }
 
 export default App;
+
+//ACTUALIZACIÓN FORZAZDA 10/02/2026
