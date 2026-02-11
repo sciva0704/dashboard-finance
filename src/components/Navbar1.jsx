@@ -1,34 +1,76 @@
+import { useState } from "react";
+
 export default function Navbar({ seccionActual, setSeccion }) {
-  const botones = [
-    { id: 'precio', nombre: 'Cotizaciones Dólar' },
-    { id: 'acciones', nombre: 'Acciones' }, // Nueva sección de ejemplo
-    { id: 'config', nombre: 'Ajustes' }
-  ];
+  const [dropdownAbierto, setDropdownAbierto] = useState(false);
+
+  // Función para cambiar de sección y cerrar el menú
+  const cambiarSeccion = (nombre) => {
+    setSeccion(nombre);
+    setDropdownAbierto(false);
+  };
 
   return (
-    <nav className="bg-slate-800 border-b border-slate-700 p-4 sticky top-0 z-50">
-      {/* "flex-col" en celular, "flex-row" en pantallas grandes */}
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-        
-        <h1 className="text-xl font-bold text-green-400 tracking-tighter">
-          FINANZAS <span className="text-white">PRO</span>
+    <nav className="bg-slate-800 border-b border-slate-700 px-6 py-4">
+      <div className="max-w-6xl mx-auto flex justify-between items-center">
+        <h1 className="text-xl font-black text-blue-500 tracking-tighter">
+          FINANZAS <span className="text-white">2026</span>
         </h1>
 
-        {/* Menú de botones con scroll horizontal si no entran */}
-        <div className="flex gap-4 text-xs md:text-sm font-medium overflow-x-auto pb-2 md:pb-0 w-full md:w-auto justify-center">
-          {botones.map((boton) => (
+        <div className="flex gap-6 items-center">
+          {/* Botón Dólar */}
+          <button
+            onClick={() => setSeccion("precio")}
+            className={`text-sm font-bold ${seccionActual === "precio" ? "text-blue-400" : "text-slate-400 hover:text-white"}`}
+          >
+            Dólar
+          </button>
+
+          {/* DROPDOWN COTIZACIONES */}
+          <div className="relative">
             <button
-              key={boton.id}
-              onClick={() => setSeccion(boton.id)}
-              className={`whitespace-nowrap px-3 py-1 rounded-full transition ${
-                seccionActual === boton.id 
-                  ? "bg-green-500 text-slate-900 font-bold" 
-                  : "text-slate-400 hover:bg-slate-700"
+              onClick={() => setDropdownAbierto(!dropdownAbierto)}
+              className={`text-sm font-bold flex items-center gap-1 ${
+                ["acciones", "cedears", "lecaps"].includes(seccionActual) ? "text-blue-400" : "text-slate-400 hover:text-white"
               }`}
             >
-              {boton.nombre}
+              Cotizaciones
+              <svg className={`w-4 h-4 transition-transform ${dropdownAbierto ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
             </button>
-          ))}
+
+            {/* Menú Desplegable */}
+            {dropdownAbierto && (
+              <div className="absolute right-0 mt-2 w-40 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl z-50 overflow-hidden">
+                <button
+                  onClick={() => cambiarSeccion("acciones")}
+                  className="w-full text-left px-4 py-3 text-xs font-bold text-slate-300 hover:bg-slate-700 hover:text-white transition-colors"
+                >
+                  Acciones
+                </button>
+                <button
+                  onClick={() => cambiarSeccion("cedears")}
+                  className="w-full text-left px-4 py-3 text-xs font-bold text-slate-300 hover:bg-slate-700 hover:text-white transition-colors border-t border-slate-700"
+                >
+                  CEDEARs
+                </button>
+                <button
+                  onClick={() => cambiarSeccion("lecaps")}
+                  className="w-full text-left px-4 py-3 text-xs font-bold text-slate-300 hover:bg-slate-700 hover:text-white transition-colors border-t border-slate-700"
+                >
+                  LECAPs
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Botón Cartera */}
+          <button
+            onClick={() => setSeccion("cartera")}
+            className={`text-sm font-bold ${seccionActual === "cartera" ? "text-emerald-400" : "text-slate-400 hover:text-white"}`}
+          >
+            Mi Cartera
+          </button>
         </div>
       </div>
     </nav>
