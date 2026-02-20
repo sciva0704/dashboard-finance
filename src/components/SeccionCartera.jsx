@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import Login from "../login";
+import Login from "../Login";
 
 export default function SeccionCartera({ user }) {
   const [activos, setActivos] = useState([]);
