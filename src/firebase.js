@@ -5,12 +5,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Configuración de tu proyecto
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  apiKey: "AIzaSyByoKu258d0ZWzTz4uq_wCvHeuyx8uOvCg",
+  authDomain: "dashboard-finance-7690c.firebaseapp.com",
+  projectId: "dashboard-finance-7690c",
+  storageBucket: "dashboard-finance-7690c.firebasestorage.app",
+  messagingSenderId: "1068840783047",
+  appId: "1:1068840783047:web:60eccd0717f2898f9e82e2"
 };
 
 // Inicializar Firebase
