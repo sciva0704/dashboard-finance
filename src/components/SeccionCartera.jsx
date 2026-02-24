@@ -162,7 +162,7 @@ export default function SeccionCartera({ user }) {
         </div>
 
         <div className="bg-slate-800 border border-slate-700 p-6 rounded-2xl shadow-xl">
-          <p className="text-slate-500 text-[10px] uppercase font-bold tracking-widest mb-1">Meta 2026</p>
+          <p className="text-slate-500 text-[10px] uppercase font-bold tracking-widest mb-1">¡Empezá tu Meta Hoy!</p>
           {!editandoMeta ? (
             <div className="flex items-center justify-between">
               <p className="text-3xl font-mono font-bold text-white">${objetivo.toLocaleString("es-AR")}</p>
