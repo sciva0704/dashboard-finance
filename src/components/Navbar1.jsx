@@ -1,22 +1,11 @@
 import { useState } from "react";
-import { auth } from "../firebase";
 
 export default function Navbar({ seccionActual, setSeccion }) {
-  // --- AGREGAMOS LOS ESTADOS QUE FALTABAN ---
   const [dropdownAbierto, setDropdownAbierto] = useState(false);
 
   const cambiarSeccion = (seccion) => {
     setSeccion(seccion);
     setDropdownAbierto(false); // Cerramos el dropdown al elegir
-  };
-
-  const handleLogout = async () => {
-    try {
-      await auth.signOut();
-      window.location.reload();
-    } catch (error) {
-      console.error("Error al cerrar sesión:", error);
-    }
   };
 
   return (
@@ -68,16 +57,6 @@ export default function Navbar({ seccionActual, setSeccion }) {
           >
             Cartera
           </button>
-
-          {/* BOTÓN DE LOGOUT (Solo aparece si hay alguien logueado) */}
-          {auth.currentUser && (
-            <button
-              onClick={handleLogout}
-              className="text-[10px] font-black text-rose-500 hover:text-rose-400 border border-rose-500/30 px-3 py-1.5 rounded-lg transition-all uppercase tracking-widest"
-            >
-              SALIR
-            </button>
-          )}
         </div>
       </div>
     </nav>

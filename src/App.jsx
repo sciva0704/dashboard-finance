@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { auth } from "./firebase";
-import { onAuthStateChanged } from "firebase/auth";
 
 import Navbar from "./components/Navbar1.jsx";
 import MenuPrincipal from "./components/Dashboard.jsx";
@@ -11,21 +9,12 @@ import SeccionCedears from "./components/SeccionCedears.jsx";
 import SeccionLecaps from "./components/SeccionLecaps.jsx";
 
 function App() {
-  const [user, setUser] = useState(null);
   const [seccion, setSeccion] = useState(() => {
     // 1. Prioridad: Lo que diga la URL (si usás el historial)
     // 2. Segunda opción: El localStorage
     // 3. Por defecto: inicio
     return localStorage.getItem("ultimaSeccion") || "inicio";
   });
-
-  // --- LÓGICA DE AUTENTICACIÓN ---
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
-  }, []);
 
   // --- LÓGICA DEL BOTÓN "ATRÁS" DEL NAVEGADOR ---
   useEffect(() => {
@@ -60,7 +49,7 @@ function App() {
         {seccion === "acciones" && <SeccionAcciones />}
         {seccion === "lecaps" && <SeccionLecaps />}
         {seccion === "cedears" && <SeccionCedears />}
-        {seccion === "cartera" && <SeccionCartera user={user} />}
+        {seccion === "cartera" && <SeccionCartera />}
       </main>
     </div>
   );
