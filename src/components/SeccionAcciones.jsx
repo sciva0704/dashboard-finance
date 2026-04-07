@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 // IMPORTANTE: Asegurate de que estos archivos existan en la misma carpeta
 import GraficoTrading from "./GraficoTrading.jsx"; 
-// import ChatIA from "./ChatIA.jsx";
+import ChatIA from "./ChatIA.jsx";
 
 export default function SeccionAcciones() {
   const [acciones, setAcciones] = useState([]);
@@ -91,9 +91,9 @@ export default function SeccionAcciones() {
           <div className="lg:col-span-2">
             <GraficoTrading ticker={tickerSeleccionado} />
           </div>
-          {/* <div className="lg:col-span-1">
+          <div className="lg:col-span-1">
             <ChatIA tickerActual={tickerSeleccionado} />
-          </div> */}
+          </div>
         </div>
       )}
 

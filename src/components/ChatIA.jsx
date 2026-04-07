@@ -18,7 +18,8 @@ export default function ChatIA({ tickerActual }) {
 
             // PLAN Z: Conexión manual directa a la versión v1 (ignorando la librería defectuosa)
             const response = await fetch(
-                `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
+                // ¡Acá está el cambio! Pasamos a gemini-flash-latest
+                `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
                 {
                     method: "POST",
                     headers: {
